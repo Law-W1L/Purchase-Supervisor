@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>泡泡玛特商城 - 支付</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .order-info {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        .order-info h3 {
+            margin: 0 0 15px 0;
+            color: #333;
+        }
+
+        .order-info p {
+            margin: 10px 0;
+            color: #666;
+        }
+
+        .price {
+            font-size: 24px;
+            color: #e74c3c;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .pay-button {
+            background-color: #07c160;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .pay-button:hover {
+            background-color: #06ae56;
+        }
+
+        .qrcode-container {
+            margin: 20px 0;
+        }
+
+        .qrcode-container img {
+            width: 200px;
+            height: 200px;
+            border-radius: 8px;
+            box-shadow: 0 0 8px #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>订单支付</h1>
+        <div class="order-info">
+            <h3>订单信息</h3>
+            <p id="product-name">商品名称：加载中...</p>
+            <p id="order-id">订单号：加载中...</p>
+            <p id="order-time">下单时间：加载中...</p>
+        </div>
+        <div class="price" id="price">¥0.00</div>
+        <div class="qrcode-container">
+            <img id="pay-qrcode" src="" alt="微信支付二维码" />
+            <p>请使用微信扫码支付</p>
+        </div>
+        <button class="pay-button" onclick="checkPaymentStatus()">已完成支付</button>
+    </div>
+
+    <script>
+        // 获取URL参数
+        const urlParams = new URLSearchParams(window.location.search);
+        const orderId = urlParams.get('orderId');
+
+        // 加载订单信息
+        async function loadOrderInfo() {
+            try {
+                const response = await fetch(`/proxy/api/order/detail?orderId=${orderId}`);
+                const result = await response.json();
+                
+                if (result.code === 200) {
+                    const order = result.data;
+                    document.getElementById('product-name').textContent = `商品名称：${order.productName}`;
+                    document.getElementById('order-id').textContent = `订单号：${order.orderId}`;
+                    document.getElementById('order-time').textContent = `下单时间：${new Date(order.createTime).toLocaleString()}`;
+                    document.getElementById('price').textContent = `¥${order.price.toFixed(2)}`;
+                    document.getElementById('pay-qrcode').src = order.payQrcode;
+                }
+            } catch (error) {
+                console.error('加载订单信息失败:', error);
+            }
+        }
+
+        // 检查支付状态
+        async function checkPaymentStatus() {
+            try {
+                const response = await fetch(`/proxy/api/payment/status?orderId=${orderId}`);
+                const result = await response.json();
+                
+                if (result.code === 200 && result.data.status === 'paid') {
+                    alert('支付成功！');
+                    window.location.href = '/';
+                } else {
+                    alert('支付未完成，请完成支付后点击按钮');
+                }
+            } catch (error) {
+                console.error('检查支付状态失败:', error);
+                alert('检查支付状态失败，请重试');
+            }
+        }
+
+        // 页面加载时获取订单信息
+        document.addEventListener('DOMContentLoaded', loadOrderInfo);
+    </script>
+</body>
+</html> 
