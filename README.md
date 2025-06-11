@@ -55,21 +55,17 @@ Then open http://localhost:8080 in your browser.
 Option 2: Direct file opening
 Simply double-click index.html or drag it into your browser.
 
-3.
-When you first open the application, you'll see a QR code for WeChat login.
+3.When you first open the application, you'll see a QR code for WeChat login.
 
-4.
-After logging in, you can:
+4.After logging in, you can:
 Configure email notifications (optional)
 Set up product monitoring preferences
 Configure notification settings
 Enable/disable auto-purchase feature
 
-5.
-The application will automatically notify you when new products are available.
+5.The application will automatically notify you when new products are available.
 
-6.
-Click the purchase button to automatically create an order and proceed to payment.
+6.Click the purchase button to automatically create an order and proceed to payment.
 API Endpoints
 
 GET /api/wx-login/qrcode: Get WeChat login QR code
@@ -83,16 +79,28 @@ GET /api/goods/detail/:id: Get product details (requires authentication)
 POST /api/order/create: Create a new order (requires authentication)
 
 GET /api/order/status/:orderId: Get order status (requires authentication)
+
 POST /api/payment/wechat: Get WeChat payment parameters (requires authentication)
+
 POST /api/payment/wechat/notify: WeChat payment notification callback
 Security
+
 This application implements several security measures:
+
 JWT for authentication
+
 Rate limiting to prevent API abuse
+
 CORS for cross-origin resource sharing
+
 Environment variables for sensitive information
+
 Logging
+
 Logs are written to error.log and combined.log files. In development mode, logs are also output to the console.
+
 Contributing
+
 Contributions to this project are welcome. Please ensure to update tests as appropriate.
+
 License
