@@ -1,5 +1,3 @@
-# Purchase-Supervisor
-The repository is used for making code to supervise and purchase automatically
 # Popmart Product Monitor
 
 This is a web application that helps users monitor Popmart's new product releases and automate the purchase process.
@@ -16,15 +14,35 @@ This is a web application that helps users monitor Popmart's new product release
    ```bash
    npm install
    ```
-3. Open `index.html` in your browser
+3. Start the application:
+   ```bash
+   # Method 1: Using a local server (recommended)
+   npx http-server
+   # Then open http://localhost:8080 in your browser
+
+   # Method 2: Direct file opening
+   # Simply double-click index.html or drag it into your browser
+   ```
 
 ## Usage
-1. Enter your Popmart account information in the settings
-2. Set up product monitoring preferences
-3. The application will automatically notify you when new products are available
-4. Click the purchase button to automatically fill in your information and proceed to payment
+1. When you first open the application, you'll see a QR code for WeChat login to Popmart's official mall
+2. Enter your Popmart account information in the settings section:
+   - Username
+   - Password
+3. Configure email notifications (optional):
+   - Enter your email address
+   - Enable/disable email notifications
+4. Set up product monitoring preferences:
+   - Click "开始监控" (Start Monitoring) to begin
+   - Use "停止监控" (Stop Monitoring) to pause
+5. Configure notification settings:
+   - Enable/disable browser notifications
+   - Enable/disable auto-purchase feature
+6. The application will automatically notify you when new products are available
+7. Click the purchase button to automatically fill in your information and proceed to payment
 
 ## Requirements
-- Modern web browser
+- Modern web browser (Chrome, Firefox, Edge recommended)
 - Internet connection
-- Popmart account 
+- Popmart account
+- Node.js and npm (for running with local server) 
