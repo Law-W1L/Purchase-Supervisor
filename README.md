@@ -47,6 +47,7 @@ Usage
 npm start
 
 2.Open the frontend:
+
 Option 1: Using a local server (recommended)
 npx http-server
 Then open http://localhost:8080 in your browser.
@@ -56,22 +57,31 @@ Simply double-click index.html or drag it into your browser.
 
 3.
 When you first open the application, you'll see a QR code for WeChat login.
+
 4.
 After logging in, you can:
 Configure email notifications (optional)
 Set up product monitoring preferences
 Configure notification settings
 Enable/disable auto-purchase feature
+
 5.
 The application will automatically notify you when new products are available.
+
 6.
 Click the purchase button to automatically create an order and proceed to payment.
 API Endpoints
+
 GET /api/wx-login/qrcode: Get WeChat login QR code
+
 GET /api/wx-login/callback: WeChat login callback
+
 GET /api/goods/list: Get list of new products (requires authentication)
+
 GET /api/goods/detail/:id: Get product details (requires authentication)
+
 POST /api/order/create: Create a new order (requires authentication)
+
 GET /api/order/status/:orderId: Get order status (requires authentication)
 POST /api/payment/wechat: Get WeChat payment parameters (requires authentication)
 POST /api/payment/wechat/notify: WeChat payment notification callback
