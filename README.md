@@ -33,8 +33,8 @@ This is a web application that helps users monitor Popmart's new product release
    - Enter your email address
    - Enable/disable email notifications
 4. Set up product monitoring preferences:
-   - Click "开始监控" (Start Monitoring) to begin
-   - Use "停止监控" (Stop Monitoring) to pause
+   - Click "Start Monitoring" to begin
+   - Use "Stop Monitoring" to pause
 5. Configure notification settings:
    - Enable/disable browser notifications
    - Enable/disable auto-purchase feature
