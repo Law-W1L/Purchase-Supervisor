@@ -45,4 +45,7 @@ This is a web application that helps users monitor Popmart's new product release
 - Modern web browser (Chrome, Firefox, Edge recommended)
 - Internet connection
 - Popmart account
-- Node.js and npm (for running with local server) 
+
+- Node.js and npm (for running with local server)
+
+- 申明：本代码进攻学术研究，如涉及到任何商业行为，与本人无关
